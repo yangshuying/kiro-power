@@ -72,11 +72,11 @@ export AWS_DEFAULT_REGION='us-east-1'
 
 **方法 3: 在脚本中配置（不推荐用于生产环境）**
 
-直接修改 `upload_to_s3.py` 中的配置参数。
+直接修改 `script/upload_to_s3.py` 中的配置参数。
 
 #### 3. 配置存储桶信息
 
-编辑 `upload_to_s3.py` 文件，修改以下参数：
+编辑 `script/upload_to_s3.py` 文件，修改以下参数：
 
 ```python
 BUCKET_NAME = 'your-bucket-name'  # 你的 S3 存储桶名称
@@ -89,12 +89,12 @@ REGION = 'us-east-1'  # 你的 AWS 区域
 
 ```bash
 # 查看帮助信息
-python3 upload_to_s3.py
+python3 script/upload_to_s3.py
 
 # 预期输出：
 # 使用方法:
-#   上传文件: python upload_to_s3.py <本地文件路径> [S3路径]
-#   上传目录: python upload_to_s3.py -d <本地目录路径> [S3前缀]
+#   上传文件: python script/upload_to_s3.py <本地文件路径> [S3路径]
+#   上传目录: python script/upload_to_s3.py -d <本地目录路径> [S3前缀]
 ```
 
 ## Common Workflows
@@ -107,17 +107,17 @@ python3 upload_to_s3.py
 
 ```bash
 # 上传到存储桶根目录（使用原文件名）
-python3 upload_to_s3.py example.txt
+python3 script/upload_to_s3.py example.txt
 
 # 上传到指定路径
-python3 upload_to_s3.py local/file.txt remote/path/file.txt
+python3 script/upload_to_s3.py local/file.txt remote/path/file.txt
 ```
 
 **示例：**
 
 ```bash
 # 上传图片到 images 目录
-python3 upload_to_s3.py photo.jpg images/photo.jpg
+python3 script/upload_to_s3.py photo.jpg images/photo.jpg
 
 # 输出：
 # 正在上传: photo.jpg -> s3://your-bucket/images/photo.jpg
@@ -132,17 +132,17 @@ python3 upload_to_s3.py photo.jpg images/photo.jpg
 
 ```bash
 # 上传目录到存储桶根目录
-python3 upload_to_s3.py -d local_folder
+python3 script/upload_to_s3.py -d local_folder
 
 # 上传目录到指定前缀路径
-python3 upload_to_s3.py -d local_folder remote_folder
+python3 script/upload_to_s3.py -d local_folder remote_folder
 ```
 
 **示例：**
 
 ```bash
 # 上传 public 目录到 S3 的 assets 前缀下
-python3 upload_to_s3.py -d public assets
+python3 script/upload_to_s3.py -d public assets
 
 # 输出：
 # 正在上传: public/index.html -> s3://your-bucket/assets/index.html
@@ -204,10 +204,10 @@ for local_path, s3_key in files:
 
 ```bash
 # 上传文件
-python3 upload_to_s3.py <本地文件路径> [S3路径]
+python3 script/upload_to_s3.py <本地文件路径> [S3路径]
 
 # 上传目录
-python3 upload_to_s3.py -d <本地目录路径> [S3前缀]
+python3 script/upload_to_s3.py -d <本地目录路径> [S3前缀]
 ```
 
 ### 参数说明
@@ -224,19 +224,19 @@ python3 upload_to_s3.py -d <本地目录路径> [S3前缀]
 
 ```bash
 # 上传单个文件到根目录
-python3 upload_to_s3.py file.txt
+python3 script/upload_to_s3.py file.txt
 
 # 上传文件到指定路径
-python3 upload_to_s3.py file.txt uploads/file.txt
+python3 script/upload_to_s3.py file.txt uploads/file.txt
 
 # 上传目录到根目录
-python3 upload_to_s3.py -d my_folder
+python3 script/upload_to_s3.py -d my_folder
 
 # 上传目录到指定前缀
-python3 upload_to_s3.py -d my_folder backup/my_folder
+python3 script/upload_to_s3.py -d my_folder backup/my_folder
 
 # 上传当前目录的所有文件
-python3 upload_to_s3.py -d . project_files
+python3 script/upload_to_s3.py -d . project_files
 ```
 
 ## Troubleshooting
@@ -306,7 +306,7 @@ python3 upload_to_s3.py -d . project_files
 **原因：** 存储桶不存在或名称错误
 
 **解决方案：**
-1. 检查 `upload_to_s3.py` 中的 `BUCKET_NAME` 是否正确
+1. 检查 `script/upload_to_s3.py` 中的 `BUCKET_NAME` 是否正确
 2. 确认存储桶在指定的区域中：
    ```bash
    aws s3 ls
@@ -358,7 +358,7 @@ pip install boto3
    ```bash
    aws s3api get-bucket-location --bucket your-bucket-name
    ```
-2. 修改 `upload_to_s3.py` 中的 `REGION` 参数为正确的区域
+2. 修改 `script/upload_to_s3.py` 中的 `REGION` 参数为正确的区域
 3. 或在环境变量中设置：
    ```bash
    export AWS_DEFAULT_REGION='ap-southeast-1'
@@ -405,7 +405,7 @@ pip install boto3
 
 ### 基本配置
 
-在 `upload_to_s3.py` 中修改以下参数：
+在 `script/upload_to_s3.py` 中修改以下参数：
 
 ```python
 BUCKET_NAME = 'your-bucket-name'  # 你的 S3 存储桶名称
